@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="utf-8" ?>
+<elogtext_registry xmlns="urn:abb-robotics-registry-elog-text">
+<entry domain_no="1" min="2" max="130" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/opr_elogtext_1.xml"/>
+<entry domain_no="1" min="131" max="296" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/opr_elogtext_2.xml"/>
+<entry domain_no="1" min="297" max="2700" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/opr_elogtext_3.xml"/>
+<entry domain_no="2" min="10" max="162" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/sys_elogtext_1.xml"/>
+<entry domain_no="2" min="164" max="395" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/sys_elogtext_2.xml"/>
+<entry domain_no="2" min="396" max="527" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/sys_elogtext_3.xml"/>
+<entry domain_no="2" min="528" max="669" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/sys_elogtext_4.xml"/>
+<entry domain_no="3" min="1810" max="4200" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_1.xml"/>
+<entry domain_no="3" min="4202" max="7070" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_2.xml"/>
+<entry domain_no="3" min="7074" max="7229" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_3.xml"/>
+<entry domain_no="3" min="7230" max="7505" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_4.xml"/>
+<entry domain_no="3" min="8100" max="9426" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_5.xml"/>
+<entry domain_no="3" min="9427" max="9531" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/hw_elogtext_6.xml"/>
+<entry domain_no="4" min="1" max="96" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_1.xml"/>
+<entry domain_no="4" min="97" max="223" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_2.xml"/>
+<entry domain_no="4" min="224" max="534" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_3.xml"/>
+<entry domain_no="4" min="535" max="649" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_4.xml"/>
+<entry domain_no="4" min="650" max="771" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_5.xml"/>
+<entry domain_no="4" min="772" max="1412" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_6.xml"/>
+<entry domain_no="4" min="1413" max="1511" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_7.xml"/>
+<entry domain_no="4" min="1512" max="1603" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_8.xml"/>
+<entry domain_no="4" min="1604" max="1707" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_9.xml"/>
+<entry domain_no="4" min="1708" max="1806" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_10.xml"/>
+<entry domain_no="4" min="1807" max="1937" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/arl_elogtext_11.xml"/>
+<entry domain_no="5" min="21" max="221" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/moc_elogtext_1.xml"/>
+<entry domain_no="5" min="222" max="327" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/moc_elogtext_2.xml"/>
+<entry domain_no="5" min="328" max="430" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/moc_elogtext_3.xml"/>
+<entry domain_no="5" min="431" max="523" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/moc_elogtext_4.xml"/>
+<entry domain_no="7" min="1001" max="1290" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/io_elogtext_1.xml"/>
+<entry domain_no="7" min="1291" max="1403" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/io_elogtext_2.xml"/>
+<entry domain_no="7" min="1404" max="1529" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/io_elogtext_3.xml"/>
+<entry domain_no="7" min="1530" max="1623" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/io_elogtext_4.xml"/>
+<entry domain_no="8" min="1" max="3" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/usr_elogtext_1.xml"/>
+<entry domain_no="9" min="200" max="450" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/safety_elogtext_1.xml"/>
+<entry domain_no="9" min="451" max="537" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/safety_elogtext_2.xml"/>
+<entry domain_no="9" min="538" max="685" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/safety_elogtext_3.xml"/>
+<entry domain_no="9" min="686" max="890" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/safety_elogtext_4.xml"/>
+<entry domain_no="10" min="0" max="0" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/int_elogtext_1.xml"/>
+<entry domain_no="11" min="4800" max="4814" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/miscproc_elogtext_1.xml"/>
+<entry domain_no="12" min="1" max="21" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/cfg_elogtext_1.xml"/>
+<entry domain_no="15" min="330" max="330" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/rapid_elogtext_1.xml"/>
+<titles prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/domain_elogtitles.xml"/>
+<domains prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/language/install/../" postpath="/controller/elog/elog_domains.xml"/>
+<domains prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/options/rse/language/" postpath="/rse_elogdomain.xml"/>
+<entry domain_no="17" min="1" max="999" prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/options/rse/language/" postpath="/rse_elogtext.xml"/>
+<titles prepath="C:/Users/yovan/AppData/Local/ABB/RobotWare/RobotWare_6.15.8029/options/rse/language/" postpath="/rse_elogtitles.xml"/>
+</elogtext_registry>

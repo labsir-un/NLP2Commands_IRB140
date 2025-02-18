@@ -1,0 +1,34 @@
+>>SYSTEM_ID:
+VIRTUAL_USE
+
+>>PRODUCTS_ID:
+RobotWare Version: 6.15.08.00
+
+  RobotWare Base
+  English
+  616-1 PC Interface
+  Drive System IRB 120/140/260/360/910SC/1200/1400/1520/1600/1660ID
+  ADU-790A in position X3
+  ADU-790A in position Y3
+  ADU-790A in position Z3
+  IRB 140-6/0.8
+
+>>HOME:
+All public files and directories
+
+>>SYSPAR:
+SYS.cfg
+PROC.cfg
+MMC.cfg
+EIO.cfg
+SIO.cfg
+MOC.cfg
+
+
+>>TASK1: (T_ROB1,,)
+SYSMOD\user.sys @ 
+PROGMOD\MainModule.mod @ 
+PROGMOD\Numbers.mod @ 
+
+
+>>EOF:
