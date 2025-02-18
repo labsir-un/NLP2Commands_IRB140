@@ -1,2 +1,1 @@
-# IRB140_LLM2Commands
-A trabajar Yovany
+# Natural Language Processing to robotic control commands - ABB IRB 140
