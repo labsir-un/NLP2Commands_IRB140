@@ -1,4 +1,4 @@
-import llmArrays
+import trainingPrompts as trainingPrompts
 from groq import Groq
 
 client = Groq(api_key = "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")
@@ -19,7 +19,7 @@ def getResponse(prompts):
     return None
 
 def getNLValues(prompt):
-  prompts = llmArrays.trainedPrompts.copy()
+  prompts = trainingPrompts.trainedPrompts.copy()
   prompts.append({'role': 'user', 'content': prompt})
   response = getResponse(prompts)
   return response

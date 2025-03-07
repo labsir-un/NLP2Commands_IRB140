@@ -1,8 +1,8 @@
 import socket
-from lastStep import fixCommands #Es necesario validar al pose en casos de move 1
-from llm2values import getArrayCommands, NL2Array
+#Es necesario validar al pose en casos de move 1
+from commandMapping import getArrayCommands, setUpCommands, NL2Array
 
-lengths = [4,4,4,12,12,12,12,1,4]
+lengths = [4, 4, 4, 12, 12, 12, 12, 1, 4]
 # X, Y, Z, qw, q1, q2, q3, action, value
 
 def socketMsg(command):
@@ -30,7 +30,7 @@ def main ():
     rawCommands = getArrayCommands()
     # test = 'draw, none, 0, draw, none, 10, draw, none, 11, draw, none, 12, draw, none, 13, draw, none, 14, draw, none, 15, draw, none, 16, draw, none, 17, draw, none, 18, draw, none, 19, draw, none, 20, draw, none, 30, draw, none, 40, draw, none, 50, draw, none, 60, draw, none, 70, draw, none, 80, draw, none, 90'
     # rawCommands = NL2Array(test)
-    commands = fixCommands(rawCommands)
+    commands = setUpCommands(rawCommands)
     print(commands)
     for command in commands:
         msg = socketMsg(command)
@@ -39,8 +39,8 @@ def main ():
         print(msg)
         allGood = int(mySocket.recv(1024).strip())
         if allGood == 1: print('Command successful finished!!!!')
-        elif allGood == 2: print("¡¡¡ERROR!!!, That action would break end effector")
-        else: print("¡¡¡ERROR!!!, The arm can't reach that point")
+        elif allGood == 2: print("ERROR!!!, That action would break end effector")
+        else: print("ERROR!!!, The arm can't reach that point")
 
 if __name__ == '__main__':
     main()
