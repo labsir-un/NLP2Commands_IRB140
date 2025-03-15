@@ -34,21 +34,22 @@ def systemInput():
 
 
 def main ():
-  # Real robot controller ip "192.168.125.1"
-  # Simulated controller ip "127.0.0.1"
+  # Simulated controller ip "127.0.0.1" | Real robot controller ip "192.168.125.1"
   clientSocket = createClientSocket("127.0.0.1")
 
   while True:
-    commands = systemInput()    
+    commands = systemInput()
     print(commands, '\n')
     for command in commands:
         message = socketMessage(command)
         print(message, '\n')
         clientSocket.send(message.encode())
-        allGood = int(clientSocket.recv(1024).strip())
-        if allGood == 1: print('Command successful finished!!!!', '\n')
-        elif allGood == 2: print("ERROR!!!, That action would break end effector", '\n')
-        else: print("ERROR!!!, The arm can't reach that point", '\n')
+        caseValidation = int(clientSocket.recv(1024).strip())
+        if caseValidation == 1:
+          print('Command successful finished!!!!', '\n')
+        else:
+          print("ERROR!!!, Point unreachable or the action could break the end effector", '\n')
 
 if __name__ == '__main__':
     main()
+    

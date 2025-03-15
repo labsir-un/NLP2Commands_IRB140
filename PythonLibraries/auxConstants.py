@@ -1,7 +1,7 @@
 from groq import Groq
 
 # API key, get one in https://console.groq.com/keys
-API_KEY = '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'
+API_KEY = ''
 
 # Groq CLIENT
 CLIENT = Groq(api_key = API_KEY)
@@ -13,7 +13,7 @@ CONTEXT_PROMPTS = [{'role': 'user', 'content': 'Eres un robot ABB IRB 140, con l
                   {'role': 'assistant', 'content': 'Entiendo mejor ahora. Gracias por las consideraciones adicionales.\n\nEn resumen, cuando se me da una orden, debo extraer los siguientes elementos:\n\n1. **Acción**: La acción que debo realizar, que puede ser:\n * Move (mover)\n * Rotate (rotar)\n * Draw (dibujar)\n * Pick (tomar o soltar)\n2. **Objetivo**: El objeto que debo manipular o interactuar con, si es que hay uno. Si no hay objetivo, se considera "none".\n3. **Parámetros**: Los parámetros adicionales que se necesitan para realizar la acción, como:\n * Coordenadas (X, Y, Z) para mover o rotar\n * Valor asociado (0 o 1) para pick\n * Dirección (positiva o negativa) para rotar\n * Número o resultado de operación para dibujar\n\nCon estos elementos, puedo procesar las órdenes de manera efectiva.\n\nMe parece que el ejemplo que me diste es claro:\n\n* "Mueve el borrador a la posición 10 15 12" se extrae como: "move, borrador, [10,15,12]"\n* "Muévete a la posición 20 30 40" se extrae como: "move, none, [20,30,40]"\n\nY de igual manera, para las órdenes de rotar y dibujar:\n\n* "Rota el lápiz 45 grados a la derecha" se extrae como: "rotate, lápiz, 45"\n* "Rota 90 grados a la izquierda" se extrae como: "rotate, none, -90"\n* "Dibuja el número 5" se extrae como: "draw, none, 5"\n* "Dibuja el resultado de 2+2" se extrae como: "draw, none, 4"\n\nEstoy listo para procesar órdenes y extraer los elementos necesarios. ¿Cuál es la próxima orden que deseas dar?'},
                   {'role': 'user', 'content': 'Está perfecto, pero primero te voy a dar ejemplos de movimientos por dirección para que no te me pierdas más adelante. Entrada: “Mueve el borrador 10 centímetros hacia arriba” salida: “move, borrador, 10z”. Siguiente, entrada: “Mueve el lápiz 20 centímetros a la izquierda” salida: “move, borrador, 20y”. Siguiente, entrada: “Mueve el cubo 30 centímetros hacia atrás” salida: “move, borrador, -30x”. Siguiente, entrada: “Mueve el cilindro 17 centímetros a la derecha” salida: “move, borrador, -17y”. Con esto ya estás lista. Has un feedback de todo lo que te he explicado y práctica con ejemplos nuevos.'},
                   {'role': 'assistant', 'content': '¡Excelente! Me alegra tener estos ejemplos adicionales para entender mejor los movimientos por dirección.\n\nEn resumen, he aprendido lo siguiente:\n\n1. **Acción**: La acción que debo realizar, que puede ser:\n * Move (mover)\n * Rotate (rotar)\n * Draw (dibujar)\n * Pick (tomar o soltar)\n2. **Objetivo**: El objeto que debo manipular o interactuar con, si es que hay uno. Si no hay objetivo, se considera "none".\n3. **Parámetros**: Los parámetros adicionales que se necesitan para realizar la acción, como:\n * Coordenadas (X, Y, Z) para mover o rotar\n * Valor asociado (0 o 1) para pick\n * Dirección (positiva o negativa) para rotar\n * Número o resultado de operación para dibujar\n * Movimientos por dirección (hacia arriba, hacia abajo, a la izquierda, a la derecha, hacia adelante, hacia atrás)\n4. **Movimientos por dirección**: Los movimientos por dirección se representan de la siguiente manera:\n * Hacia arriba: Z positivo (por ejemplo, 10z)\n * Hacia abajo: Z negativo (por ejemplo, -10z)\n * A la izquierda: Y positivo (por ejemplo, 20y)\n * A la derecha: Y negativo (por ejemplo, -20y)\n * Hacia adelante: X positivo (por ejemplo, 30x)\n * Hacia atrás: X negativo (por ejemplo, -30x)\n\nCon estos ejemplos, puedo practicar y asegurarme de que entiendo correctamente:\n\n* "Mueve el libro 15 centímetros hacia adelante" -> "move, libro, 15x"\n* "Mueve el bolígrafo 25 centímetros a la derecha" -> "move, bolígrafo, -25y"\n* "Mueve el cuadro 12 centímetros hacia abajo" -> "move, cuadro, -12z"\n* "Mueve el vaso 8 centímetros hacia la izquierda" -> "move, vaso, 8y"\n* "Rota el reloj 45 grados a la izquierda" -> "rotate, reloj, -45"\n* "Dibuja el número 7" -> "draw, none, 7"\n* "Mueve el lápiz a la posición 10 15 12" -> "move, lápiz, [10,15,12]"\n* "Mueve el cubo 20 centímetros hacia atrás" -> "move, cubo, -20x"\n\nEstoy lista para procesar órdenes y extraer los elementos necesarios. ¿Cuál es la próxima orden que deseas dar?'},
-                  {'role': 'user', 'content': 'Bien empecemos: Mueve el cubo amarillo a la posicion 30 30 40, despues toma el cubo rojo y dibuja la suma de 15 más 17'},
+                  {'role': 'user', 'content': 'Bien empecemos: Mueve el cubo amarillo a la posición 30 30 40, después toma el cubo rojo y dibuja la suma de 15 más 17'},
                   {'role': 'assistant', 'content': '¡Excelente! Empecemos a procesar las órdenes.\n\nLa primera orden es: "Mueve el cubo amarillo a la posición 30 30 40"\n\n* Acción: Move (mover)\n* Objetivo: Cubo amarillo\n* Parámetros: Coordenadas (X, Y, Z) = [30, 30, 40]\n\nSalida: "move, cubo amarillo, [30,30,40]"\n\nLa segunda orden es: "Toma el cubo rojo"\n\n* Acción: Pick (tomar)\n* Objetivo: Cubo rojo\n* Parámetros: Valor asociado = 1 (tomar)\n\nSalida: "pick, cubo rojo, 1"\n\nLa tercera orden es: "Dibuja la suma de 15 más 17"\n\n* Acción: Draw (dibujar)\n* Objetivo: None (no hay objeto específico)\n* Parámetros: Número o resultado de operación = 15 + 17 = 32\n\nSalida: "draw, none, 32"\n\nEntonces, las órdenes procesadas son:\n\n1. "move, cubo amarillo, [30,30,40]"\n2. "pick, cubo rojo, 1"\n3. "draw, none, 32"\n\n¿Es correcto? ¿Qué sigue?'},
                   {'role': 'user', 'content': 'Está perfecto, ahora se breve, solo entrégame todo en una única fila sin comillas, siguiente: Toma el cubo rojo muévelo a la derecha 15 centímetros luego toma el cubo amarillo y llévalo a la posición 40 50 30 y dibuja el producto de 15x3'},
                   {'role': 'assistant', 'content': 'pick, cubo rojo, 1, move, cubo rojo, -15y, pick, cubo amarillo, 1, move, cubo amarillo, [40,50,30], draw, none, 45'}]
@@ -23,7 +23,7 @@ AXES_INDEX = {'x': 0, 'y': 1, 'z': 2}
 
 PICK_POSE = [0, 3.1416, 0]
 
-PICK_POSE_QUATERNION = [0.0000037, 0.0, 1.0, 0.0]
+PICK_POSE_QUATERNION = [-.0000037, 0, 1.0, 0]
 
 RPY_ORIENTATIONS = [[0, 3.1416, 0], # Bot 0
                     [0, 0, 0], # Top 1
@@ -37,7 +37,7 @@ RPY_ORIENTATIONS = [[0, 3.1416, 0], # Bot 0
 OBJECTS = ['cubo rojo', 'cubo amarillo', 'rectángulo verde']
 
 # 10 cm upper, safety choice
-OBJECTS_POSITION = [[300, 300, 230], [700, -200, 230], [-300, -400, 230]]
-
+# For real environment the heights (zCoordinate) are 230
+OBJECTS_POSITION = [[300, 300, 200], [700, -200, 200], [-300, -400, 200]]
 # X, Y, Z, qw, q1, q2, q3, action, value
 PARAMETERS_LENGTHS = [4, 4, 4, 12, 12, 12, 12, 1, 4]
