@@ -7,7 +7,7 @@ import ast
 lastTarget = 'none'
 
 # There are two types move command, linear movement and joint movement
-def moveInstructions(customValue):
+def moveOrders(customValue):
     # It could be -10x or [1,2,3]
     if len(customValue) > 4:
         # Convert string to NumPy array, x10 due to ABB controller works with millimeters
@@ -21,8 +21,8 @@ def moveInstructions(customValue):
     moveCommand[axis] = int(customValue[:-1])*10
     return moveCommand
 
-# Create the commands array from instructions string
-def instructions2CommandsValues(transcription):
+# Create the commands array from orders string
+def orders2CommandsValues(transcription):
     wholeArray = transcription.split(', ')
     actionsList, targetsList, valuesList  = [], [], []
     for index in range(int(len(wholeArray)/3)):
@@ -32,11 +32,8 @@ def instructions2CommandsValues(transcription):
         targetsList.append(wholeArray[initialIndex + 1])
         rawValue = wholeArray[initialIndex + 2]
 
-        # Only movement instructions have considerable differences
-        if command == 1:
-            valuesList.append(moveInstructions(rawValue))
-        else:
-            valuesList.append(int(rawValue))
+        # Only movement orders have considerable differences
+        valuesList.append(moveOrders(rawValue) if command == 1 else int(rawValue))
     return actionsList, targetsList, valuesList
 
 # Predefine orientations according to position
@@ -83,7 +80,7 @@ def setUpCommands(commandsValues):
     commands = []
 
     # If the initial target is none, it doesn't mean that robot must drop the current taken object
-    # It means robot have to do the instruction itself without target in memory
+    # It means robot have to do the order itself without target in memory
 
     for currentAction, currentTarget, currentValue in zip(actions, targets, values):
         # Does he already have something?  Previous drop or pick

@@ -1,5 +1,5 @@
-from mappingModule import instructions2CommandsValues, setUpCommands, socketMessage
-from llamaModule import getInstructionsValues
+from mappingModule import orders2CommandsValues, setUpCommands, socketMessage
+from llamaModule import getOrdersValues
 from whisperModule import getTranscription
 import keyboard
 import socket
@@ -21,14 +21,14 @@ def systemInput():
       print('<<<<<<<<<<<<<<<<<ENTER PARA DETENER RECEPCIÓN DE ORDENES>>>>>>>>>>>>>>>>>')
       transcription = getTranscription(0, 'Recibiendo ordenes...').lower()
       print(transcription, '\n')
-      InstructionsValues = getInstructionsValues(transcription)
-      print(InstructionsValues, '\n')
+      ordersValues = getOrdersValues(transcription)
+      print(ordersValues, '\n')
       print('<<<<<<<<<<<<<<<<<VALIDACIÓN HUMANA>>>>>>>>>>>>>>>>>')
       print('<CUALQUIER TECLA PARA REINICIAR>')
       print('<ENTER PARA VALIDAR>', '\n')
       keyPressed = keyboard.read_key()
       if keyPressed == 'enter':
-          commandsValues = instructions2CommandsValues(InstructionsValues)
+          commandsValues = orders2CommandsValues(ordersValues)
           commands = setUpCommands(commandsValues)
           return commands
 

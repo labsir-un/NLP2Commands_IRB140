@@ -1,6 +1,6 @@
 from auxConstants import CLIENT, CONTEXT_PROMPTS
 
-# Send prompt to Llama
+# Send prompts to Llama
 def llamaRequest(prompts): 
   completion = CLIENT.chat.completions.create(messages = prompts,
                                               model = 'llama-3.3-70b-versatile',
@@ -11,8 +11,8 @@ def llamaRequest(prompts):
   return response
 
 # Main function Llama module
-def getInstructionsValues(prompt):
+def getOrdersValues(prompt):
   prompts = CONTEXT_PROMPTS.copy()
   prompts.append({'role': 'user', 'content': prompt})
-  instructionValues = llamaRequest(prompts).lower()
-  return instructionValues
+  ordersValues = llamaRequest(prompts).lower()
+  return ordersValues

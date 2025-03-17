@@ -12,14 +12,12 @@ def get_response(prompts):
 
 def chat():
   st.title('Chat con Llama 3.3')
-  st.write("Bienvenidos al chat con IA! Escribe 'exit' para terminar la conversación.")
   if 'prompts' not in st.session_state:
     st.session_state['prompts'] = CONTEXT_PROMPTS
 
   def submit():
     user_input = st.session_state.user_input
     if user_input.lower() == 'exit':
-      st.write('Gracias por chatear! ¡Adios!')
       st.stop()
     
     st.session_state['prompts'].append({'role': 'user', 'content': user_input})
@@ -41,3 +39,5 @@ def chat():
 
 if __name__ == "__main__":
   chat()
+
+# Créditos a Código Espinoza - Automatiza tu vida https://www.youtube.com/@CodigoEspinoza
