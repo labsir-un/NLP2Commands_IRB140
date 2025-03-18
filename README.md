@@ -26,21 +26,21 @@ Con el auge de la inteligencia artificial y los **LLM** varias industrias han im
 
 ### Metodología
 
-El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comandos de robot industrial, consta de tres etapas claves.
+El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comandos de robot industrial, consta de cuatro etapas claves.
 
-1. **Investigación**
+1. **Investigación**  
   Ecuación de búsqueda en fuentes bibliográficas de indole ingenieril, Wor2Vec y el transformer.
 
 2. **Diseño**  
-   2.1 Capacidades del robot  
-   2.2 Entorno de operación  
-   2.3 Criterios de éxito  
+   2.1 Capacidades del robot
+   2.2 Entorno de operación
+   2.3 Criterios de éxito
    2.4 Diseño conceptual
 
 3. **Programación y contextualización del LLM**
 4. **Implementación**  
-  4.1 Módulos RAPID en controlador IRC5  
-  4.2 Smart components en la simulación de estación  
+  4.1 Módulos RAPID en controlador IRC5
+  4.2 Smart components en la simulación de estación
   4.3 Montaje en robot real
 
 ---
