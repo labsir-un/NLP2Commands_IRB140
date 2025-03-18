@@ -40,4 +40,4 @@ def chat():
 if __name__ == "__main__":
   chat()
 
-# Créditos a Código Espinoza - Automatiza tu vida https://www.youtube.com/@CodigoEspinoza
+# Credits to Código Espinoza - Automatiza tu vida https://www.youtube.com/@CodigoEspinoza

@@ -66,3 +66,5 @@ def getTranscription(recordingSeconds, message):
   fileName = createTemporalFile(audioFrames)
   transcription = whisperRequest(fileName)
   return transcription
+
+# Credits to Código Espinoza - Automatiza tu vida https://www.youtube.com/@CodigoEspinoza
