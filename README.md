@@ -46,13 +46,13 @@ El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comando
 
 ### 1. Investigación
 
-Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" OR "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Estos métodos se quedan atrás frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN protagonistas de los métodos contemporáneos, donde resalta un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos anteriores, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la protagonista de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
+Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" OR "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Estos métodos se quedan atrás frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN protagonistas de los métodos contemporáneos, donde resalta un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos que involucran el estudio del lenguaje, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la base de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
 
 ### 2. Diseño
 
 #### 2.1 Capacidades del robot
 
-Antes de comenzar con la programación y generación de módulos, es esencial identificar las capacidades del robot, el ABB IRB 140 6 0.81 al ser un brazo, cuenta con seis grados de libertad y sus capacidades se limitan a movimiento cartesiano, movimiento articular y el seguimiento de trayectorias predefinidas en su espacio de trabajo, estas trayectorias son números del 0 al 9, que con una modificación sencilla en sus parámetros llegan hasta el 99, otorgándole la capacidad de dibujar números, adicionalmente al girar su sexta articulación y con un objeto sostenido por el efector final, se le atribuye la capacidad de rotar objetos. Dicho efector es una ventosa de vacío, lo que le otorga la capacidad de tomar o soltar objetos, entonces el robot es capaz de llevar a cabo 4 comandos y todas sus combinaciones.
+Antes de comenzar con la programación y generación de módulos, es esencial identificar las capacidades del robot, el ABB IRB 140 6 0.81 al ser un brazo, cuenta con seis grados de libertad y sus capacidades se limitan a movimiento cartesiano, movimiento articular y el seguimiento de trayectorias predefinidas en su espacio de trabajo, estas trayectorias son números del 0 al 9, que con una modificación sencilla en sus parámetros llegan hasta el 99, otorgándole la capacidad de dibujar números, adicionalmente al girar su sexta articulación y con un objeto sostenido por el efector final, se le atribuye la capacidad de rotar objetos. Dicho efector es una ventosa de vacío, lo que le otorga la capacidad de tomar o soltar objetos, entonces, el robot es capaz de llevar a cabo 4 comandos y todas sus combinaciones.
 
 * Tomar y soltar objetos
 * Realizar movimientos lineales y articulares
@@ -61,7 +61,7 @@ Antes de comenzar con la programación y generación de módulos, es esencial id
 
 #### 2.2 Entorno de operación
 
-Ahora bien en su entorno de trabajo se encuentran 3 objetos identificables por su color y forma, cubo rojo, cubo amarillo y rectángulo verde, todos compuestos de poliestireno expandido, con estos objetos el sistema ha de interactuar, contando con una posición predefinida y que se ha de tener en cuenta en la generación de comandos.
+Ahora bien, en su entorno de trabajo se encuentran 3 objetos identificables por su color y forma, cubo rojo, cubo amarillo y rectángulo verde, todos compuestos de poliestireno expandido. Con estos objetos el sistema ha de interactuar, contando con una posición predefinida y que se ha de tener en cuenta en la generación de comandos.
 
 |<img src="Media/Layout.png" alt="layout" width="70%">|
 |:--:|
@@ -71,7 +71,7 @@ Ahora bien en su entorno de trabajo se encuentran 3 objetos identificables por s
 
 El éxito del proyecto se encuentra en la validación del funcionamiento en totalidad del sistema, es decir, que se ejecuten correctamente los cuatro tipos de comandos y sus combinaciones. Lo que conlleva inevitablemente a someter el sistema al anidado de comandos en una sola entrada.
 
-El desempeño del LLM y el modelo de voz a texto, hace parte de los resultados y no clasifica como criterio de éxito, ya que no hace parte del proyecto enfatizar en el rendimiento de las herramientas utilizadas.
+El desempeño del LLM y el modelo de voz a texto, hacen parte de los resultados y no clasifica como criterio de éxito, ya que no esta en los objetivos del proyecto enfatizar en el rendimiento de las herramientas utilizadas.
 
 #### 2.4 Diseño conceptual
 
@@ -81,7 +81,7 @@ Partiendo por la arquitectura del sistema, se plantean cuatro etapas entre las o
 |:--:|
 |_**Figura 2.** Arquitectura del sistema._|
 
-En primera posición el paso de voz a texto mediante un modelo de inteligencia artificial con dicha funcionalidad, el más popular es Whisper de OpenAI el cual es de código abierto, en segunda posición el paso del texto plano como prompt del LLM, siendo este Llama de Meta, también de código abierto. En tercer lugar el modulo de mapeo de la respuesta del LLM a comandos, para su posterior transmisión por protocolo TCP/IP o Socket en ABB, hacia la cuarta y ultima etapa que corresponde al controlador del robot, esta ultima se encarga de la validación de los puntos a alcanzar en pro de cuidar la integridad de la estación.
+En primera lugar el paso de voz a texto mediante un modelo de inteligencia artificial con dicha funcionalidad, siendo el más popular Whisper de OpenAI de código abierto. En segunda lugar el paso del texto plano como prompt del LLM, siendo este Llama de Meta también de código abierto. En tercer lugar el modulo de mapeo de la respuesta del LLM a comandos, para su posterior transmisión por protocolo TCP/IP o Socket en ABB, hacia la cuarta y ultima etapa que corresponde al controlador del robot, encargada de la validación de los puntos a alcanzar en pro de cuidar la integridad de la estación.
 
 **Componentes adicionales**
 
@@ -98,19 +98,19 @@ A continuación se mencionan las librerías necesarias para la implementación t
 
 Se utiliza Python 3.12.3 con las siguientes librerías:
 
-* _groq_, para usar Whisper y Llama.
+* _groq_, para ejecutar Whisper y Llama.
 * _streamlit_, para desarrollar la interfaz donde se lleva a cabo la contextualización del LLM.
-* _keyboard_, para usar teclas en la ejecución del sistema.
+* _keyboard_, para incorporar teclas en la ejecución del sistema.
 * _socket_, para comunicar Python con el controlador del robot.
 * _numpy_, para manipular listas.
 * _scipy_, para transformar ángulos de euler a quaternios.
 * _ast_, para convertir strings a listas.
-* _tempfile_, para usar archivos temporales.
+* _tempfile_, para crear archivos temporales.
 * _pyaudio_, para capturar audio,
 * _wave_, para manipular archivos _.wav_.
 * _os_, para abrir archivos.
 
-La contextualización consta de otorgarle al LLM el rol de un robot con la capacidad de transformar ordenes en lenguaje natural a acciones, objetivos y valores. Seguidamente se exponen ejemplos de las acciones que puede reconocer y la relación entre ellas con los objetos del entorno, de igual manera se le otorgan indicaciones de signos, de acuerdo a la estación y la sexta articulación. Siendo derecha Y-, adelante X+ y arriba Z+. Cuando se le dice que gire y no se especifica la dirección debe ser positivo. Por ejemplo, `gira 45 grados el Objeto A` la salida debe ser 45, ya que no se le ha especificado la dirección de giro. En cada prompt se le solicita un feedback de lo ya explicado, para garantizar la presencia de toda la información en cada respuesta.
+La contextualización consta de otorgarle al LLM el rol de un robot con la capacidad de transformar ordenes en lenguaje natural a acciones, objetivos y valores. Seguidamente se exponen ejemplos de las acciones que puede reconocer y la relación entre ellas con los objetos del entorno, de igual manera se le otorgan indicaciones de signos, de acuerdo a la estación y la sexta articulación. Siendo derecha Y-, adelante X+ y arriba Z+. Cuando se ordena que gire un objeto y no se especifica la dirección esta debe ser positiva. Por ejemplo, _`gira 45 grados el Objeto A`_ la salida debe ser 45, ya que no se le ha especificado la dirección de giro. En cada prompt se solicita un feedback de lo ya explicado, para garantizar la presencia de toda la información en cada respuesta.
 
 | Orden  | Respuesta|
 |:------:|:----------:|
@@ -155,7 +155,7 @@ PERS wobjdata drawBoard := [FALSE,TRUE,"",[[350,-300,450],[0,0,1,0]],[[0,0,0],[1
 
 **_Numbers_**
 
-Este módulo almacena todos los puntos para la generación de números, además de 3 arreglos auxiliares para el correcto recorrido de los puntos mediante un ciclo for.
+Este módulo almacena todos los puntos para la generación de números, además de 3 arreglos auxiliares para el correcto recorrido de los puntos mediante un ciclo _for_.
 
 ```c
 CONST robtarget numbersPoints{133} := [P_01, ...
@@ -187,7 +187,7 @@ PROC GetCommand()
     WaitTime(2); ! Before the next command
 ENDPROC
 ```
-En los comandos move y pick se realiza una validación del punto a alcanzar, para ello se establece un valor seguro para Z, si es inferior, el controlador no ejecuta dicho comando. Con al función `NotReachable`, se valida la configuración articular a alcanzar para un punto en especifico, de manera que de no ser posible dicha configuración, tampoco se ejecuta el comando.
+En los comandos move y pick se realiza una validación del punto a alcanzar, para ello se establece un valor seguro para Z (`safeZ` en el modulo `Parameters`), si es inferior, el controlador no ejecuta dicho comando. Con la función `NotReachable`, se valida la configuración articular a alcanzar para un punto en especifico, de manera que de no ser posible dicha configuración, tampoco se ejecuta el comando.
 
 ```c
 FUNC bool NotReachable(robtarget pointToReach, PERS tooldata tool, PERS wobjdata workObject)
@@ -231,7 +231,7 @@ La electro válvula tiene como entrada el suministro de aire a traves del brazo,
 | DO_4 | IN_24V_2 |
 | GND | GND_1 & GND_2 |
 
-De manera que, para encender la ventosa, se activa *DO_3* y se desactiva *DO_4*, y su opuesto en caso contrario.
+De manera que, para encender la ventosa, se activa *DO_3* y se desactiva *DO_4*, y su opuesto en caso contrario. *Light_1* corresponde a un testigo que se enciende cuando hay conexión por socket entre el servidor (_Controlador_) y el cliente (_Módulos python_) y *Light_2* el testigo para la desconexión.
 
 2. **Preparación del entorno**
 
