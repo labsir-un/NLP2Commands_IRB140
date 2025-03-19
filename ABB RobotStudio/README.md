@@ -1,0 +1,3 @@
+Este archivo corresponde a la estación en _RobotStudio 2024_ y se exportó con la herramienta **Pack & Go**. Para su correcta importación se abre directamente haciendo doble click o desde la pestaña abrir de _RobotStudio_, con la ayuda del **asistente de desempaquetado** se selecciona la version de _RobotWare 6.15.08_ y la estación carga correctamente con todos los smart components y los módulos _RAPID_.
+
+Si bien en la descripción detallada del sistema se menciona _RobotWare 5.15_, este es el software del controlador real y no hay ningún inconveniente con ejecutar la simulación en una versión más reciente de RobotWare.

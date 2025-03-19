@@ -94,7 +94,7 @@ En primera posición el paso de voz a texto mediante un modelo de inteligencia a
 
 ### 3. Programación y contextualización del LLM
 
-A continuación se mencionan las librerías necesarias para la implementación total del sistema, para visualizar el código en detalle dirigirse a [PythonModules](https://github.com/labsir-un/NLP2Commands_IRB140/tree/main/PythonModules).
+A continuación se mencionan las librerías necesarias para la implementación total del sistema, para visualizar el código al detalle dirigirse a [PythonModules](https://github.com/labsir-un/NLP2Commands_IRB140/tree/main/PythonModules).
 
 Se utiliza Python 3.12.3 con las siguientes librerías:
 
