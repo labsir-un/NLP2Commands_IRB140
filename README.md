@@ -46,7 +46,7 @@ El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comando
 
 ### 1. Investigación
 
-Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Dichos métodos quedan obsoletos frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN, donde se ubican los métodos contemporáneos, resaltando un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos anteriores, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la protagonista de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
+Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" OR "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Estos métodos se quedan atrás frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN protagonistas de los métodos contemporáneos, donde resalta un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos anteriores, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la protagonista de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
 
 ### 2. Diseño
 
@@ -286,3 +286,49 @@ En el robot real, se ejecuta el sistema satisfactoriamente, no obstante y de igu
 * A diferencia de investigaciones pasadas, el sistema de _Inferencia de ordenes en lenguaje natural a comandos de robot industrial_, presenta migración a otros idiomas sin inconvenientes, esto por la naturaleza de los LLMs y su trazabilidad de conceptos.
 
 * Aunque los LLMs superan en capacidad de atención a las RNNs, en entradas con un numero elevado de tokens, los mecanismos de atención dejan de converger eficientemente cuando el concepto requerido se ha dejado de lado, esto se evidencia en la dirección en el giro errónea y el olvido de soltar los objetos ya tomados.
+
+---
+
+### Bibliografía
+
+[1] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. Distributed representa-
+tions of words and phrases and their compositionality. 10 2013. URL http://arxiv.org/abs/1310.4546.
+
+[2] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz
+Kaiser, and Illia Polosukhin. Attention is all you need. 6 2017. URL http://arxiv.org/abs/
+1706.03762.
+[3] Yilmaz Kilicaslan and Gurkan Tuna. An nlp-based approach for improving human-robot interac-
+tion. Journal of Artificial Intelligence and Soft Computing Research, 3:189–200, 7 2013. ISSN 2083-
+2567. doi: 10.2478/jaiscr-2014-0013. URL https://www.sciendo.com/article/10.2478/
+jaiscr-2014-0013.
+[4] Weiwei Li, Kun Xu, Jing Qi, and Xilun Ding. A natural language processing method of chinese
+instruction for multi-legged manipulating robot. In 2018 IEEE International Conference on Robotics
+and Biomimetics (ROBIO), pages 2171–2176. IEEE, 12 2018. ISBN 978-1-7281-0377-8. doi: 10.
+1109/ROBIO.2018.8664888. URL https://ieeexplore.ieee.org/document/8664888/.
+[5] Kadir Aram, Gokhan Erdemir, and Burhanettin Can. Formation control of multiple autonomous mo-
+bile robots using turkish natural language processing. Applied Sciences, 14:3722, 4 2024. ISSN 2076-
+3417. doi: 10.3390/app14093722. URL https://www.mdpi.com/2076-3417/14/9/3722.
+[6] Hao Li, Yu-Ping Wang, and Tai-Jiang Mu. Nerva: Automated application synthesis for humanoid
+robot from user natural language description. Communications in Information and Systems, 17:45–
+64, 2017. ISSN 15267555. doi: 10.4310/CIS.2017.v17.n1.a3. URL https://link.intlpress.
+com/JDetail/1805790732743032834.
+[7] Wittawin Kahuttanaseth, Alexander Dressler, and Chayakorn Netramai. Commanding mobile robot
+movement based on natural language processing with rnn encoderdecoder. In 2018 5th International
+Conference on Business and Industrial Research (ICBIR), pages 161–166. IEEE, 5 2018. ISBN 978-
+1-5386-5254-1. doi: 10.1109/ICBIR.2018.8391185. URL https://ieeexplore.ieee.org/
+document/8391185/.
+[8] Beili Dong, Junhong Chen, Zeyu Wang, Kaizhong Deng, Yiping Li, Benny Lo, and George Mylonas.
+An intelligent robotic endoscope control system based on fusing natural language processing and
+vision models. In 2024 IEEE International Conference on Robotics and Automation (ICRA), pages
+8180–8186. IEEE, 5 2024. ISBN 979-8-3503-8457-4. doi: 10.1109/ICRA57147.2024.10611534.
+URL https://ieeexplore.ieee.org/document/10611534/.
+[9] Guang Li, Xinzhe Han, Pengcheng Zhao, Pengju Hu, Lu Nie, and Xiaoning Zhao. Robochat: A unified
+llm-based interactive framework for robotic systems. In 2023 5th International Conference on Robo-
+tics, Intelligent Control and Artificial Intelligence (RICAI), pages 466–471. IEEE, 12 2023. ISBN 979-
+8-3503-5795-0. doi: 10.1109/RICAI60863.2023.10489289. URL https://ieeexplore.ieee.
+org/document/10489289/.
+[10] Kangtong Mo, Wenyan Liu, Fangzhou Shen, Xuanzhen Xu, Letian Xu, Xiran Su, and Ye Zhang. Preci-
+sion kinematic path optimization for high-dof robotic manipulators utilizing advanced natural lan-
+guage processing models. In 2024 5th International Conference on Electronic Communication and Ar-
+tificial Intelligence (ICECAI), pages 649–654. IEEE, 5 2024. ISBN 979-8-3503-8694-3. doi: 10.1109/
+ICECAI62591.2024.10675146. URL https://ieeexplore.ieee.org/document/10675146/.
