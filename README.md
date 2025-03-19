@@ -10,7 +10,7 @@
 
 ### Resumen del proyecto
 
-Con el auge de la inteligencia artificial y los **LLM** varias industrias han implementado efectivamente esta tecnología en sus procesos de monitoreo y producción, mejorando en términos de eficiencia y productividad, no siendo la robótica ajena a este fenómeno, se propone la integración de un LLM para la interpretación de órdenes habladas en lenguaje natural a comandos de robot industrial con el fin de reducir considerablemente los tiempos de programación de rutinas de control robótico, partiendo de una respuesta a un prompt inicial, se realiza un mapeo de esta información a comandos compatibles con el controlador del robot en cuestión. En el desarrollo se utiliza Python para la integración de la API de **Groq** donde se ejecuta **Whisper large v3** para el paso de voz a texto plano, el LLM **Llama 3.3 70b versátil**, y el módulo encargado del mapeo a comandos de robot basado en la respuesta del LLM. Partiendo de la contextualización del LLM del rol y tareas a realizar, se ejecuta la simulación con smart components en **Robot Studio 2024**, para su posterior montaje en el robot industrial ABB **IRB 140 6 0.81** ubicado en el LabSir. Con la implementación del sistema, el robot responde correctamente a las órdenes expuestas, limitándose unicamente en los casos en los que el propio controlador del robot determina que el punto a alcanzar es de alto riesgo para el efector final o presenta problemas de singularidad. Estos resultados demuestran la capacidad de esta tecnología en la mejora de la eficiencia y la productividad en la planificación de rutinas de control robótico a nivel industrial.
+Con el auge de la inteligencia artificial y los **LLM** varias industrias han implementado efectivamente esta tecnología en sus procesos de monitoreo y producción, mejorando en términos de eficiencia y productividad. No siendo la robótica ajena a este fenómeno, se propone la integración de un LLM para la interpretación de órdenes habladas en lenguaje natural a comandos de robot industrial con el fin de reducir considerablemente los tiempos de programación de rutinas de control robótico, partiendo de una respuesta a un prompt inicial, se realiza un mapeo de esta información a comandos compatibles con el controlador del robot en cuestión. En el desarrollo se utiliza Python para la integración de la API de **Groq** donde se ejecuta **Whisper large v3** para el paso de voz a texto plano, el LLM **Llama 3.3 70b versátil**, y el módulo encargado del mapeo a comandos de robot basado en la respuesta del LLM. Partiendo de la contextualización del LLM del rol y tareas a realizar, se ejecuta la simulación con smart components en **Robot Studio 2024**, para su posterior montaje en el robot industrial ABB **IRB 140 6 0.81** ubicado en el LabSir. Con la implementación del sistema, el robot responde correctamente a las órdenes expuestas, limitándose unicamente en los casos en los que el propio controlador del robot determina que el punto a alcanzar es de alto riesgo para el efector final o presenta problemas de singularidad. Estos resultados demuestran la capacidad de esta tecnología en la mejora de la eficiencia y la productividad en la planificación de rutinas de control robótico a nivel industrial.
 
 ---
 
@@ -46,7 +46,7 @@ El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comando
 
 ### 1. Investigación
 
-Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" OR "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Estos métodos se quedan atrás frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN protagonistas de los métodos contemporáneos, donde resalta un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos que involucran el estudio del lenguaje, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la base de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
+Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" OR "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando ocho artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Estos métodos se quedan atrás frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN protagonistas de los métodos contemporáneos, donde resalta un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos que involucran el estudio del lenguaje, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la base de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
 
 ### 2. Diseño
 
@@ -87,7 +87,7 @@ En primera lugar el paso de voz a texto mediante un modelo de inteligencia artif
 
 * RobotWare 5.15
 * Tubo venturi
-* Electroválvula de doble solenoide
+* Electro válvula de doble solenoide
 * Manguera neumática de 8 mm
 * Soporte en impresión 3D para ventosa
 * Ventosa común
@@ -205,11 +205,11 @@ ENDFUNC
 
 #### 4.2 Montaje en robot real
 
-Para el montaje en el robot real, se utilizaron herramientas como destornillador, pinzas, cinta de enmascarar y marcador permanente. A continuación un paso a paso del procedimiento.
+Para el montaje en el robot real, se utilizan herramientas como destornillador, pinzas, cinta de enmascarar y marcador permanente. A continuación un paso a paso del procedimiento.
 
 1. **Montaje del efector final**
 
-Para fijar el soporte se utilizan 2 tornillos M6 de 10   mm de longitud, de manera que la apertura lateral se oriente hacia abajo. Como se observa en la _Figura 3_.
+Para fijar el soporte de la ventosa se utilizan 2 tornillos M6 de 10   mm de longitud, de manera que la apertura lateral se oriente hacia abajo. Como se observa en la _Figura 3_.
 
 |<img src="Media/ReadyRobot.jpg" alt="readyRobot" width="55%">|
 |:--:|
@@ -223,7 +223,7 @@ Seguidamente se ajusta la electro válvula al lateral izquierdo de la carcasa de
 
 La electro válvula tiene como entrada el suministro de aire a traves del brazo, la primera salida alimenta el tuvo venturi, ubicado entre el soporte y la carcasa. La abertura lateral del tuvo venturi se conecta a la ventosa, de manera que la presión positiva generada en dicha abertura, genera el vacío necesario para levantar los objetos. La segunda salida corresponde a una manguera bloqueada, de manera que la válvula pueda alternar correctamente entre salidas. La configuración I/O del controlador es la siguiente.
 
-| Salida controlador | Electroválvula |
+| Salida controlador | Electro válvula |
 |:--:|:--:|
 | DO_1 | Light_1 |
 | DO_2 | Light_2 |
@@ -231,7 +231,7 @@ La electro válvula tiene como entrada el suministro de aire a traves del brazo,
 | DO_4 | IN_24V_2 |
 | GND | GND_1 & GND_2 |
 
-De manera que, para encender la ventosa, se activa *DO_3* y se desactiva *DO_4*, y su opuesto en caso contrario. *Light_1* corresponde a un testigo que se enciende cuando hay conexión por socket entre el servidor (_Controlador_) y el cliente (_Módulos python_) y *Light_2* el testigo para la desconexión.
+De manera que, para encender la ventosa, se activa *DO_3* y se desactiva *DO_4*, y su opuesto en caso contrario. *Light_1* corresponde al testigo para la conexión por socket entre el servidor (_Controlador_) y el cliente (_Módulos python_) y *Light_2* al testigo para la desconexión.
 
 2. **Preparación del entorno**
 
@@ -251,7 +251,7 @@ Se identifican estos puntos como el centro de cada objeto y se ubican en la esta
 
 3. **Conexión al sistema**
 
-La conexión se realiza a través del puerto de servicio del controlador del robot, por tanto es necesario hallar a dirección IP del mismo. Para ello, se accede mediante el TeachPendant a `System Info/Controller properties/Network connections/Service port` y en la ventana lateral derecha se observa la dirección IP y su máscara, como se observa en la _Figura 6_.
+La conexión se realiza a través del puerto de servicio del controlador del robot, por tanto es necesario hallar la dirección IP del mismo. Para ello, se accede mediante el _TeachPendant_ a `System Info/Controller properties/Network connections/Service port` y en la ventana lateral derecha se encuentra la dirección IP y su máscara correspondiente, como se observa en la _Figura 6_.
 
 |<img src="Media/ServicePortIP.jpg" alt="servicePortIP" width="80%">|
 |:--:|
@@ -261,7 +261,7 @@ Esta dirección IP se utiliza en la linea 38 de la función `main` en el archivo
 
 ### 5. Resultados
 
-Tanto en simulación como en el robot real no se entra en detalle en el desempeño de _Whisper Large V3_ ya que este depende meramente del habla, ruido y sonido ambiental. Siendo que cuando se habla fuerte y claro, este no presenta errores de ningún tipo.
+Tanto en la simulación como en el robot real no se entra en detalle en el desempeño de _Whisper Large V3_ ya que este depende meramente del habla, ruido y sonido ambiental. Siendo que cuando se habla fuerte y claro, este no presenta errores de ningún tipo.
 
 #### 5.1 Resultados en simulación
 
@@ -269,7 +269,7 @@ Tanto en simulación como en el robot real no se entra en detalle en el desempe�
 
 _**Video 1.** Resultados en simulación, RobotStudio 2024._
 
-En simulación se cumplen con todos los criterios de éxito, no obstante, hace presencia una mala interpretación por parte del LLM en la identificación del objetivo en un comando de movimiento, al ser una herramienta complemento del sistema, el desempeño del LLM puede ser mejorado e incluso ser remplazado por uno mejor como DeepSeek R1, sin comprometer el funcionamiento del sistema. Teniendo en cuenta este error, el desempeño del sistema es del 88.8 % para ordenes con 9 comandos anidados.
+En simulación se cumplen con todos los criterios de éxito, no obstante, hace presencia una mala interpretación por parte del LLM en la identificación del objetivo en un comando de movimiento, al ser una herramienta complemento del sistema, el desempeño del LLM puede ser mejorado e incluso ser remplazado por uno mejor como _DeepSeek R1_, sin comprometer el funcionamiento del sistema. Teniendo en cuenta este error, el desempeño del sistema es del 88.8% para ordenes con 9 comandos anidados.
 
 #### 5.2 Resultados en entorno real
 
@@ -277,11 +277,11 @@ En simulación se cumplen con todos los criterios de éxito, no obstante, hace p
 
 _**Video 2.** Resultados en robot real, LabSir._
 
-En el robot real, se ejecuta el sistema satisfactoriamente, no obstante y de igual manera que en simulación, hace presencia una mala interpretación por parte del LLM en la dirección de giro en comando de giro. Teniendo en cuenta este error, el desempeño del sistema es del 91.7 % para ordenes con 12 comandos anidados.
+En el robot real, se ejecuta el sistema satisfactoriamente, no obstante y de igual manera que en simulación, hace presencia una mala interpretación por parte del LLM en la dirección del comando de giro. Teniendo en cuenta este error, el desempeño del sistema es del 91.7% para ordenes con 12 comandos anidados.
 
 ### 6. Conclusiones
 
-* La inteligencia artificial es la herramienta ideal para el desarrollo de sistemas más eficientes, siendo que el hecho de ubicar un objeto en un punto del espacio con solo una orden en lenguaje natural, corresponde a hacer un Pick & Place en segundos.
+* La inteligencia artificial es la herramienta ideal para el desarrollo de sistemas más eficientes, el hecho de ubicar un objeto en un punto del espacio con solo una orden en lenguaje natural, corresponde a hacer un _Pick & Place_ en segundos.
 
 * A diferencia de investigaciones pasadas, el sistema de _Inferencia de ordenes en lenguaje natural a comandos de robot industrial_, presenta migración a otros idiomas sin inconvenientes, esto por la naturaleza de los LLMs y su trazabilidad de conceptos.
 
@@ -291,44 +291,23 @@ En el robot real, se ejecuta el sistema satisfactoriamente, no obstante y de igu
 
 ### Bibliografía
 
-[1] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. Distributed representa-
-tions of words and phrases and their compositionality. 10 2013. URL http://arxiv.org/abs/1310.4546.
+[1] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. Distributed representations of words and phrases and their compositionality. 10 2013. URL http://arxiv.org/abs/1310.4546.
 
-[2] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz
-Kaiser, and Illia Polosukhin. Attention is all you need. 6 2017. URL http://arxiv.org/abs/
-1706.03762.
-[3] Yilmaz Kilicaslan and Gurkan Tuna. An nlp-based approach for improving human-robot interac-
-tion. Journal of Artificial Intelligence and Soft Computing Research, 3:189–200, 7 2013. ISSN 2083-
-2567. doi: 10.2478/jaiscr-2014-0013. URL https://www.sciendo.com/article/10.2478/
-jaiscr-2014-0013.
+[2] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. Attention is all you need. 6 2017. URL http://arxiv.org/abs/1706.03762.
+
+[3] Yilmaz Kilicaslan and Gurkan Tuna. An nlp-based approach for improving human-robot interaction. Journal of Artificial Intelligence and Soft Computing Research, 3:189–200, 7 2013. ISSN 2083-2567. doi: 10.2478/jaiscr-2014-0013. URL https://www.sciendo.com/article/10.2478/jaiscr-2014-0013.
+
 [4] Weiwei Li, Kun Xu, Jing Qi, and Xilun Ding. A natural language processing method of chinese
-instruction for multi-legged manipulating robot. In 2018 IEEE International Conference on Robotics
-and Biomimetics (ROBIO), pages 2171–2176. IEEE, 12 2018. ISBN 978-1-7281-0377-8. doi: 10.
-1109/ROBIO.2018.8664888. URL https://ieeexplore.ieee.org/document/8664888/.
-[5] Kadir Aram, Gokhan Erdemir, and Burhanettin Can. Formation control of multiple autonomous mo-
-bile robots using turkish natural language processing. Applied Sciences, 14:3722, 4 2024. ISSN 2076-
-3417. doi: 10.3390/app14093722. URL https://www.mdpi.com/2076-3417/14/9/3722.
-[6] Hao Li, Yu-Ping Wang, and Tai-Jiang Mu. Nerva: Automated application synthesis for humanoid
-robot from user natural language description. Communications in Information and Systems, 17:45–
-64, 2017. ISSN 15267555. doi: 10.4310/CIS.2017.v17.n1.a3. URL https://link.intlpress.
-com/JDetail/1805790732743032834.
-[7] Wittawin Kahuttanaseth, Alexander Dressler, and Chayakorn Netramai. Commanding mobile robot
-movement based on natural language processing with rnn encoderdecoder. In 2018 5th International
-Conference on Business and Industrial Research (ICBIR), pages 161–166. IEEE, 5 2018. ISBN 978-
-1-5386-5254-1. doi: 10.1109/ICBIR.2018.8391185. URL https://ieeexplore.ieee.org/
-document/8391185/.
-[8] Beili Dong, Junhong Chen, Zeyu Wang, Kaizhong Deng, Yiping Li, Benny Lo, and George Mylonas.
-An intelligent robotic endoscope control system based on fusing natural language processing and
-vision models. In 2024 IEEE International Conference on Robotics and Automation (ICRA), pages
-8180–8186. IEEE, 5 2024. ISBN 979-8-3503-8457-4. doi: 10.1109/ICRA57147.2024.10611534.
-URL https://ieeexplore.ieee.org/document/10611534/.
-[9] Guang Li, Xinzhe Han, Pengcheng Zhao, Pengju Hu, Lu Nie, and Xiaoning Zhao. Robochat: A unified
-llm-based interactive framework for robotic systems. In 2023 5th International Conference on Robo-
-tics, Intelligent Control and Artificial Intelligence (RICAI), pages 466–471. IEEE, 12 2023. ISBN 979-
-8-3503-5795-0. doi: 10.1109/RICAI60863.2023.10489289. URL https://ieeexplore.ieee.
-org/document/10489289/.
-[10] Kangtong Mo, Wenyan Liu, Fangzhou Shen, Xuanzhen Xu, Letian Xu, Xiran Su, and Ye Zhang. Preci-
-sion kinematic path optimization for high-dof robotic manipulators utilizing advanced natural lan-
-guage processing models. In 2024 5th International Conference on Electronic Communication and Ar-
-tificial Intelligence (ICECAI), pages 649–654. IEEE, 5 2024. ISBN 979-8-3503-8694-3. doi: 10.1109/
-ICECAI62591.2024.10675146. URL https://ieeexplore.ieee.org/document/10675146/.
+instruction for multi-legged manipulating robot. In 2018 IEEE International Conference on Robotics and Biomimetics (ROBIO), pages 2171–2176. IEEE, 12 2018. ISBN 978-1-7281-0377-8. doi: 10.1109/ROBIO.2018.8664888. URL https://ieeexplore.ieee.org/document/8664888/.
+
+[5] Kadir Aram, Gokhan Erdemir, and Burhanettin Can. Formation control of multiple autonomous mobile robots using turkish natural language processing. Applied Sciences, 14:3722, 4 2024. ISSN 2076-3417. doi: 10.3390/app14093722. URL https://www.mdpi.com/2076-3417/14/9/3722.
+
+[6] Hao Li, Yu-Ping Wang, and Tai-Jiang Mu. Nerva: Automated application synthesis for humanoid robot from user natural language description. Communications in Information and Systems, 17:45–64, 2017. ISSN 15267555. doi: 10.4310/CIS.2017.v17.n1.a3. URL https://link.intlpress.com/JDetail/1805790732743032834.
+
+[7] Wittawin Kahuttanaseth, Alexander Dressler, and Chayakorn Netramai. Commanding mobile robot movement based on natural language processing with rnn encoderdecoder. In 2018 5th International Conference on Business and Industrial Research (ICBIR), pages 161–166. IEEE, 5 2018. ISBN 978-1-5386-5254-1. doi: 10.1109/ICBIR.2018.8391185. URL https://ieeexplore.ieee.org/document/8391185/.
+
+[8] Beili Dong, Junhong Chen, Zeyu Wang, Kaizhong Deng Yiping Li, Benny Lo, and George Mylonas. An intelligent robotic endoscope control system based on fusing natural language processing and vision models. In 2024 IEEE International Conference on Robotics and Automation (ICRA), pages 8180–8186. IEEE, 5 2024. ISBN 979-8-3503-8457-4. doi: 10.1109/ICRA57147.2024.10611534. URL https://ieeexplore.ieee.org/document/10611534/.
+
+[9] Guang Li, Xinzhe Han, Pengcheng Zhao, Pengju Hu, Lu Nie, and Xiaoning Zhao. Robochat: A unified llm-based interactive framework for robotic systems. In 2023 5th International Conference on Robotics, Intelligent Control and Artificial Intelligence (RICAI), pages 466–471. IEEE, 12 2023. ISBN 979-8-3503-5795-0. doi: 10.1109/RICAI60863.2023.10489289. URL https://ieeexplore.ieee.org/document/10489289/.
+
+[10] Kangtong Mo, Wenyan Liu, Fangzhou Shen, Xuanzhen Xu, Letian Xu, Xiran Su, and Ye Zhang. Precision kinematic path optimization for high-dof robotic manipulators utilizing advanced natural language processing models. In 2024 5th International Conference on Electronic Communication and Artificial Intelligence (ICECAI), pages 649–654. IEEE, 5 2024. ISBN 979-8-3503-8694-3. doi: 10.1109/ICECAI62591.2024.10675146. URL https://ieeexplore.ieee.org/document/10675146/.
