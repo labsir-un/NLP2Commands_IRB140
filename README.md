@@ -46,7 +46,7 @@ El desarrollo del sistema de inferencia de ordenes en lenguaje natural a comando
 
 ### 1. Investigación
 
-Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Dichos métodos quedan obsoletos frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes, donde se ubican los métodos contemporáneos, resaltando un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos anteriores, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la protagonista de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
+Es necesaria la búsqueda de antecedentes en lo que respecta al procesamiento de lenguaje natural o NLP y su aplicación en robótica, para ello se utiliza la ecuación de búsqueda _("Large Language Model" OR "Natural Language Processing" OR "NLP" OR "LLM") AND ("Robot" OR "Robotic" "Robotics" OR "Robotic arm" OR "Robotic manipulator") AND PUBYEAR > 2012 AND PUBYEAR < 2025_, encontrando nueve artículos relevantes para el objetivo del proyecto, se clasifican en tres categorías. Métodos obsoletos, métodos contemporáneos y métodos actuales. Los métodos obsoletos son aquellos que usan procedimientos asociados a la lengua en cuestión, reglas gramaticales y sintácticas, arboles semánticos o campos condicionales aleatorios en cascada para la identificación de elementos en una oración. Dichos métodos quedan obsoletos frente a la aparición de Word2Vec y su integración a las redes neuronales recurrentes o RNN, donde se ubican los métodos contemporáneos, resaltando un estudio en el cual mediante una red neuronal recurrente y solo 1600 parámetros de entrada se obtiene un desempeño del 73.65% en el procesamiento de lenguaje natural, mucho más eficiente que los métodos anteriores, sin embargo, las redes neuronales recurrentes tienen poca capacidad de memoria, es allí donde aparece el transformer, dicha arquitectura es la protagonista de los métodos actuales, donde se utilizan modelos grandes de lenguaje o por sus siglas en inglés LLM, no obstante, en su mayoría los estudios dejan toda la responsabilidad al LLM de hallar las trayectorias, analizar los obstáculos, entre otros. Esto ocasiona que el desempeño general no supere el 80%, por ello este proyecto ha de utilizar el LLM solo en el NLP para la extracción de las ordenes, seguidamente, python para el mapeo posterior de la respuesta obtenida, a comandos compatibles con el controlador del robot en cuestión, donde este último, dado el caso, es el responsable de la generación de trayectorias.
 
 ### 2. Diseño
 
@@ -261,12 +261,28 @@ Esta dirección IP se utiliza en la linea 38 de la función `main` en el archivo
 
 ### 5. Resultados
 
+Tanto en simulación como en el robot real no se entra en detalle en el desempeño de _Whisper Large V3_ ya que este depende meramente del habla, ruido y sonido ambiental. Siendo que cuando se habla fuerte y claro, este no presenta errores de ningún tipo.
+
 #### 5.1 Resultados en simulación
 
 [![Simulación](https://img.youtube.com/vi/G_UeWlkgMdY/0.jpg)](https://www.youtube.com/watch?v=G_UeWlkgMdY)
+
+_**Video 1.** Resultados en simulación, RobotStudio 2024._
+
+En simulación se cumplen con todos los criterios de éxito, no obstante, hace presencia una mala interpretación por parte del LLM en la identificación del objetivo en un comando de movimiento, al ser una herramienta complemento del sistema, el desempeño del LLM puede ser mejorado e incluso ser remplazado por uno mejor como DeepSeek R1, sin comprometer el funcionamiento del sistema. Teniendo en cuenta este error, el desempeño del sistema es del 88.8 % para ordenes con 9 comandos anidados.
 
 #### 5.2 Resultados en entorno real
 
 [![Ver Video](https://img.youtube.com/vi/Xe3ISFExZHU/0.jpg)](https://www.youtube.com/watch?v=Xe3ISFExZHU)
 
+_**Video 2.** Resultados en robot real, LabSir._
+
+En el robot real, se ejecuta el sistema satisfactoriamente, no obstante y de igual manera que en simulación, hace presencia una mala interpretación por parte del LLM en la dirección de giro en comando de giro. Teniendo en cuenta este error, el desempeño del sistema es del 91.7 % para ordenes con 12 comandos anidados.
+
 ### 6. Conclusiones
+
+* La inteligencia artificial es la herramienta ideal para el desarrollo de sistemas más eficientes, siendo que el hecho de ubicar un objeto en un punto del espacio con solo una orden en lenguaje natural, corresponde a hacer un Pick & Place en segundos.
+
+* A diferencia de investigaciones pasadas, el sistema de _Inferencia de ordenes en lenguaje natural a comandos de robot industrial_, presenta migración a otros idiomas sin inconvenientes, esto por la naturaleza de los LLMs y su trazabilidad de conceptos.
+
+* Aunque los LLMs superan en capacidad de atención a las RNNs, en entradas con un numero elevado de tokens, los mecanismos de atención dejan de converger eficientemente cuando el concepto requerido se ha dejado de lado, esto se evidencia en la dirección en el giro errónea y el olvido de soltar los objetos ya tomados.
