@@ -187,7 +187,7 @@ PROC GetCommand()
     WaitTime(2); ! Before the next command
 ENDPROC
 ```
-En los comandos move y pick se realiza una validación del punto a alcanzar, para ello se establece un valor seguro para Z, si es inferior, el controlador no ejecuta dicho comando. Con al función `NotReachable`, se valida la configuración a alcanzar para un punto en especifico, de manera que de no ser posible, tampoco se ejecuta el comando.
+En los comandos move y pick se realiza una validación del punto a alcanzar, para ello se establece un valor seguro para Z, si es inferior, el controlador no ejecuta dicho comando. Con al función `NotReachable`, se valida la configuración articular a alcanzar para un punto en especifico, de manera que de no ser posible dicha configuración, tampoco se ejecuta el comando.
 
 ```c
 FUNC bool NotReachable(robtarget pointToReach, PERS tooldata tool, PERS wobjdata workObject)
@@ -217,7 +217,7 @@ Para fijar el soporte se utilizan 2 tornillos M6 de 10   mm de longitud, de mane
 
 Seguidamente se ajusta la electro válvula al lateral izquierdo de la carcasa del brazo superior, esto involucra un soporte adicional, el cual se sostiene con dos tornillos M5 de 4 cm de longitud. Al soporte se atornilla la electro válvula con un tornillo de las mismas características. Como se observa en la _Figura 4_.
 
-|<img src="Media/ElectroValve.jpg" alt="electroValve" width="50%">|
+|<img src="Media/Electrovalve.jpg" alt="electroValve" width="50%">|
 |:--:|
 |_**Figura 4.** Montaje electro válvula._|
 
@@ -262,6 +262,8 @@ Esta dirección IP se utiliza en la linea 38 de la función `main` en el archivo
 ### 5. Resultados
 
 #### 5.1 Resultados en simulación
+
+[![Simulación](https://img.youtube.com/vi/G_UeWlkgMdY/0.jpg)](https://www.youtube.com/watch?v=G_UeWlkgMdY)
 
 #### 5.2 Resultados en entorno real
 
