@@ -110,7 +110,16 @@ Se utiliza Python 3.12.3 con las siguientes librerías:
 * _wave_, para manipular archivos _.wav_.
 * _os_, para abrir archivos.
 
-La contextualización consta de otorgarle al LLM el rol de un robot con la capacidad de transformar ordenes en lenguaje natural a acciones, objetivos y valores. Seguidamente se le explican los comandos que puede reconocer y la relación de los unos con los otros, de igual manera se le otorgan ejemplos e indicaciones de signos, de acuerdo a la estación y la sexta articulación. Siendo derecha Y-, adelante X+ y arriba Z+. Cuando se le dice que gire y no se especifica la dirección debe ser positivo. Por ejemplo, `gira 45 grados el Objeto A` la salida debe ser 45, ya que no se le ha especificado la dirección de giro. En cada prompt se le solicita un feedback de lo ya aprendido, para garantizar la presencia de toda la información en cada respuesta.
+La contextualización consta de otorgarle al LLM el rol de un robot con la capacidad de transformar ordenes en lenguaje natural a acciones, objetivos y valores. Seguidamente se exponen ejemplos de las acciones que puede reconocer y la relación entre ellas con los objetos del entorno, de igual manera se le otorgan indicaciones de signos, de acuerdo a la estación y la sexta articulación. Siendo derecha Y-, adelante X+ y arriba Z+. Cuando se le dice que gire y no se especifica la dirección debe ser positivo. Por ejemplo, `gira 45 grados el Objeto A` la salida debe ser 45, ya que no se le ha especificado la dirección de giro. En cada prompt se le solicita un feedback de lo ya explicado, para garantizar la presencia de toda la información en cada respuesta.
+
+| Orden  | Respuesta|
+|:------:|:----------:|
+| Toma el cubo amarillo | Pick, Cubo amarillo, 1 |
+| Suelta el cubo rojo | Pick, Cubo rojo, 0 |
+| Mueve el cubo rojo 10 centímetros a la derecha    |  Move, Cubo rojo, -10Y    |
+| Lleva el rectángulo verde a la posición 0, 0, 120 | Move, Rectángulo verde, [0,0,120] |
+| Rota el cubo amarillo media vuelta | Rotate, Cubo amarillo, 180 |
+| Dibuja la resta de 70 menos 43 | Draw, none, 27 |
 
 Para observar al detalle todos los prompts de contextualización, ejecutar el archivo [contextingLLM.py](https://github.com/labsir-un/NLP2Commands_IRB140/tree/main/PythonModules/contextingLLM.py), con el comando _`streamlit run contextingLLM.py`_ en consola.
 
@@ -158,7 +167,7 @@ CONST num startIndices{10} := [1, 10, 16, 27, 47, 53, 68, 89, 92, 113];
 
 **_MainModule_**
 
-Este modulo contiene todos los procedimientos y funciones vinculados al proyecto, donde el procedimiento más relevante es `GetCommand`. Este recibe los datos provenientes del cliente, genera un punto objetivo con esos datos y ejecuta el comando de entrada.
+Este modulo contiene todos los procedimientos y funciones vinculados al proyecto, donde el procedimiento más relevante es `GetCommand`. Este recibe los datos provenientes del cliente, genera un punto objetivo con esos datos y ejecuta el comando entrante.
 
 ```c
 PROC GetCommand()
@@ -196,6 +205,60 @@ ENDFUNC
 
 #### 4.2 Montaje en robot real
 
+Para el montaje en el robot real, se utilizaron herramientas como destornillador, pinzas, cinta de enmascarar y marcador permanente. A continuación un paso a paso del procedimiento.
+
+1. **Montaje del efector final**
+
+Para fijar el soporte se utilizan 2 tornillos M6 de 10   mm de longitud, de manera que la apertura lateral se oriente hacia abajo. Como se observa en la _Figura 3_.
+
+|<img src="Media/ReadyRobot.jpg" alt="readyRobot" width="55%">|
+|:--:|
+|_**Figura 3.** Robot con efector final._|
+
+Seguidamente se ajusta la electro válvula al lateral izquierdo de la carcasa del brazo superior, esto involucra un soporte adicional, el cual se sostiene con dos tornillos M5 de 4 cm de longitud. Al soporte se atornilla la electro válvula con un tornillo de las mismas características. Como se observa en la _Figura 4_.
+
+|<img src="Media/ElectroValve.jpg" alt="electroValve" width="50%">|
+|:--:|
+|_**Figura 4.** Montaje electro válvula._|
+
+La electro válvula tiene como entrada el suministro de aire a traves del brazo, la primera salida alimenta el tuvo venturi, ubicado entre el soporte y la carcasa. La abertura lateral del tuvo venturi se conecta a la ventosa, de manera que la presión positiva generada en dicha abertura, genera el vacío necesario para levantar los objetos. La segunda salida corresponde a una manguera bloqueada, de manera que la válvula pueda alternar correctamente entre salidas. La configuración I/O del controlador es la siguiente.
+
+| Salida controlador | Electroválvula |
+|:--:|:--:|
+| DO_1 | Light_1 |
+| DO_2 | Light_2 |
+| DO_3 | IN_24V_1 |
+| DO_4 | IN_24V_2 |
+| GND | GND_1 & GND_2 |
+
+De manera que, para encender la ventosa, se activa *DO_3* y se desactiva *DO_4*, y su opuesto en caso contrario.
+
+2. **Preparación del entorno**
+
+Las posiciones predefinidas de los tres objetos son las siguientes.
+
+| Objeto | Posición (X, Y) [mm]|
+|:--:|:--:|
+| Cubo rojo | (300, 300)|
+| Cubo amarillo | (700, -200) |
+| Rectángulo verde | (-300, -400) |
+
+Se identifican estos puntos como el centro de cada objeto y se ubican en la estación de trabajo, señalando con marcador la posición de los mismos. Como se observa en la _Figura 5_.
+
+|<img src="Media/RealStation.jpeg" alt="realStation" width="80%">|
+|:--:|
+|_**Figura 5.** Estación real._|
+
+3. **Conexión al sistema**
+
+La conexión se realiza a través del puerto de servicio del controlador del robot, por tanto es necesario hallar a dirección IP del mismo. Para ello, se accede mediante el TeachPendant a `System Info/Controller properties/Network connections/Service port` y en la ventana lateral derecha se observa la dirección IP y su máscara, como se observa en la _Figura 6_.
+
+|<img src="Media/ServicePortIP.jpg" alt="servicePortIP" width="80%">|
+|:--:|
+|_**Figura 6.** TeachPendant, puerto de servicio._|
+
+Esta dirección IP se utiliza en la linea 38 de la función `main` en el archivo [main.py](https://github.com/labsir-un/NLP2Commands_IRB140/tree/main/PythonModules/main.py), para la conexión cliente servidor via TCP/IP o socket en ABB.
+
 ### 5. Resultados
 
 #### 5.1 Resultados en simulación
@@ -203,3 +266,5 @@ ENDFUNC
 #### 5.2 Resultados en entorno real
 
 [![Ver Video](https://img.youtube.com/vi/Xe3ISFExZHU/0.jpg)](https://www.youtube.com/watch?v=Xe3ISFExZHU)
+
+### 6. Conclusiones
