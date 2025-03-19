@@ -139,8 +139,8 @@ CONST speeddata generalSpeed := v80;
 CONST zonedata generalZone := z10;
 CONST zonedata pickZone := fine;
 CONST jointtarget homeJoints := [[0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0]];
-PERS tooldata vacuumGripper:=[TRUE, [[0, 0, 129.78],[1, 0, 0, 0]],[1, [0, 0, 1],[1, 0, 0, 0], 0, 0, 0]];
-PERS wobjdata drawBoard:=[FALSE,TRUE,"",[[350,-300,450],[0,0,1,0]],[[0,0,0],[1,0,0,0]]];
+PERS tooldata vacuumGripper := [TRUE, [[0, 0, 129.78],[1, 0, 0, 0]],[1, [0, 0, 1],[1, 0, 0, 0], 0, 0, 0]];
+PERS wobjdata drawBoard := [FALSE,TRUE,"",[[350,-300,450],[0,0,1,0]],[[0,0,0],[1,0,0,0]]];
 ...
 ```
 
@@ -149,11 +149,11 @@ PERS wobjdata drawBoard:=[FALSE,TRUE,"",[[350,-300,450],[0,0,1,0]],[[0,0,0],[1,0
 Este módulo almacena todos los puntos para la generación de números, además de 3 arreglos auxiliares para el correcto recorrido de los puntos mediante un ciclo for.
 
 ```c
-    CONST robtarget numbersPoints{133} := [P_01, ...
-                                           ...
-                                           P_91, ...];
-    CONST num amountPoints{10} := [8, 5, 10, 19, 5, 14, 20, 2, 20, 20]; ! Amount of points per number
-    CONST num startIndices{10} := [1, 10, 16, 27, 47, 53, 68, 89, 92, 113];
+CONST robtarget numbersPoints{133} := [P_01, ...
+                                        ...
+                                        P_91, ...];
+CONST num amountPoints{10} := [8, 5, 10, 19, 5, 14, 20, 2, 20, 20]; ! Amount of points per number
+CONST num startIndices{10} := [1, 10, 16, 27, 47, 53, 68, 89, 92, 113];
 ```
 
 **_MainModule_**
